@@ -1,7 +1,6 @@
 import React from "react";
-import  "./directory.style.scss";
+import "./directory.style.scss";
 import MenuItem from "../menu-item/menu-item.component";
-
 
 class Directory extends React.Component {
   constructor() {
@@ -19,43 +18,43 @@ class Directory extends React.Component {
           title: "jackets",
           imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
           id: 2,
-          linkUrl: "",
+          linkUrl: "jackets",
         },
         {
           title: "sneakers",
           imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
           id: 3,
-          linkUrl: "",
+          linkUrl: "sneakers",
         },
         {
           title: "womens",
           imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
           size: "large",
           id: 4,
-          linkUrl: "",
+          linkUrl: "womens",
           // eslint-disable-next-line no-dupe-keys
-          size:"large"
+          size: "large",
         },
         {
           title: "mens",
           imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
           size: "large",
           id: 5,
-          linkUrl: "",
+          linkUrl: "mens",
           // eslint-disable-next-line no-dupe-keys
-          size:"large",
+          size: "large",
         },
       ],
     };
   }
-  render(){
-      return (
-        <div className="directory-menu">
-            {this.state.sections.map(({title, imageUrl, id, size})=>(
-                <MenuItem key={id} title={title} imageUrl={imageUrl} size={size}/>
-            ))}
-        </div>
-      );
+  render() {
+    return (
+      <div className="directory-menu">
+        {this.state.sections.map(({ id, ...otherSectionProps }) => (
+          <MenuItem key={id} {...otherSectionProps} />
+        ))}
+      </div>
+    );
   }
 }
 
