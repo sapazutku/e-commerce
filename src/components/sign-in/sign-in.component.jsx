@@ -16,7 +16,7 @@ class SignInPage extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state);
-    this.setState({ email: "", password: "" });
+    //this.setState({ email: "", password: "" });
   };
 
   handleChange = (e) => {
@@ -48,8 +48,14 @@ class SignInPage extends React.Component {
             onChange={this.handleChange} // writing on state
             required
           />
-          <CustomButton className="submit" type="submit" value="Sign In">Sign in</CustomButton>
-          <CustomButton onClick={signInWithGoogle} isGoogle={true} >Sign with Google</CustomButton>
+
+          <CustomButton className="submit" type="submit" value="Sign In">
+            Sign in
+          </CustomButton>
+          {/* google button is not working */}
+          <CustomButton onClick={signInWithGoogle} isGoogle>
+            Sign with Google
+          </CustomButton>
         </form>
       </div>
     );

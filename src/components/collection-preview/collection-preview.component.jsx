@@ -3,7 +3,7 @@ import "./collection-preview.style.scss";
 import CollectionItem from "../collection-item/collection-item.component.jsx";
 
 const CollectionPreview = ({ title, items }) => {
-  console.log(items)
+  //console.log(items)
   return (
     <div className="collection-preview">
       <h1 className="title">{title.toUpperCase()}</h1>

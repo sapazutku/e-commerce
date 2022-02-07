@@ -3,7 +3,7 @@ import React from "react";
 import "./collection-item.style.scss";
 // add imageUrl to class who name is "image"
 const CollectionItem = ({ item }) => {
-  console.log(item.imageUrl);
+  //console.log(item.imageUrl);
   return (
     <div className="collection-item">
       <div
