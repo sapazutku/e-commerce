@@ -4,7 +4,7 @@ import Homepage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import "./App.css";
 import Header from "./components/header/header.component";
-
+import SignInPage from "./pages/sign-in-sign-up/sign-in-sign-up.component";
 /* const TopicsList = (props) => {
   console.log(props);
   return (
@@ -33,6 +33,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/shop" component={ShopPage} />
+        <Route path="/signin" component={SignInPage} />
       </Switch>
     </div>
   );
