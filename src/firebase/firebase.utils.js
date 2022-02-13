@@ -1,9 +1,17 @@
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
-import "firebase/compat/auth";
+import { useEffect, useState } from "react";
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
 
-const config = {
+// Your web app's Firebase configuration
+const firebaseConfig = {
   apiKey: "AIzaSyBqrq4UVa83I2C1rJZIJnWyYXQFdBFF3tw",
   authDomain: "react-db-d39ee.firebaseapp.com",
   projectId: "react-db-d39ee",
@@ -13,38 +21,30 @@ const config = {
   measurementId: "G-6MSYLMM1T7",
 };
 
-firebase.initializeApp(config);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
 
-export const createUserProfileDocument = async (userAuth, additionalData) => {
-  if (!userAuth) return;
+export function signup(email, password) {
+  return createUserWithEmailAndPassword(auth, email, password);
+}
 
-  const userRef = firestore.doc(`users/${userAuth.uid}`);
+export function login(email, password) {
+  return signInWithEmailAndPassword(auth, email, password);
+}
 
-  const snapShot = await userRef.get();
+export function logout() {
+  return signOut(auth);
+}
 
-  if (!snapShot.exists) {
-    const { displayName, email } = userAuth;
-    const createdAt = new Date();
-    try {
-      await userRef.set({
-        displayName,
-        email,
-        createdAt,
-        ...additionalData,
-      });
-    } catch (error) {
-      console.log("error creating user", error.message);
-    }
-  }
+// Custom Hook
+export function useAuth() {
+  const [currentUser, setCurrentUser] = useState();
 
-  return userRef;
-};
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => setCurrentUser(user));
+    return unsub;
+  }, []);
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
-
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
-
-export default firebase;
+  return currentUser;
+}

@@ -1,23 +1,21 @@
 import React from "react";
 import "./sign-in.style.scss";
 import FormInput from "../form-input/form-input.component";
-import CustomButton from "../custom-button/custom-button.component";
-import { signInWithGoogle } from "../../firebase/firebase.utils";
+//import CustomButton from "../custom-button/custom-button.component";
+//import { signInWithGoogle } from "../../firebase/firebase.utils";
 
 class SignInPage extends React.Component {
   constructor(props) {
     super(props);
 
+    
     this.state = {
       email: "",
       password: "",
+      
     };
   }
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(this.state);
-    //this.setState({ email: "", password: "" });
-  };
+
 
   handleChange = (e) => {
     const { value, name } = e.target; // works with password and email
@@ -49,13 +47,6 @@ class SignInPage extends React.Component {
             required
           />
 
-          <CustomButton className="submit" type="submit" value="Sign In">
-            Sign in
-          </CustomButton>
-          {/* google button is not working */}
-          <CustomButton onClick={signInWithGoogle} isGoogle>
-            Sign with Google
-          </CustomButton>
         </form>
       </div>
     );
